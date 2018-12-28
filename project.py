@@ -4,7 +4,7 @@ app = Flask(__name__)
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from database_setup import Base, Item, Category
+from database_setup import Base, Category, Item
 
 
 engine = create_engine('sqlite:///catalog.db',
@@ -21,6 +21,10 @@ def home():
 @app.route('/category/<int:category_id>/')
 def showCategory(category_id):
     return "Welcome"
+
+@app.route('/category/<int:category_id>/JSON')
+def showCategoryJSON(category_id):
+    return "Category in JSON"
 
 @app.route('/category/<int:category_id>/item/new/', methods=['GET', 'POST'])
 def newItem(category_id):
