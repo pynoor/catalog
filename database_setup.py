@@ -36,6 +36,10 @@ class Item(Base):
         String(20), nullable=False
     )
 
+    id = Column(
+        Integer, primary_key=True
+    )
+
     description = Column(
         String(500), nullable=True
     )
