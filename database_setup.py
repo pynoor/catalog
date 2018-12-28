@@ -54,7 +54,7 @@ class Item(Base):
             'category': self.category,
         }
 
-engine = crearte_engine(
+engine = create_engine(
     'sqlite:///catalog.db'
 )
 
