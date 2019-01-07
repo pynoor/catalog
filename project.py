@@ -164,7 +164,7 @@ def gdisconnect():
     print ('In gdisconnect access token is %s', access_token)
     print ('User name is: ')
     print (login_session['username'])
-    url = 'https://accounts.google.com/o/oauth2/revoke?token=%s' % login_session['access_token']
+    url = 'https://accounts.google.com/o/oauth2/revoke?token={}'.format(access_token)
     h = httplib2.Http()
     result = h.request(url, 'GET')[0]
     print ('result is ')
@@ -187,12 +187,15 @@ def gdisconnect():
 def showCategory(category_id):
     category = session.query(Category).filter_by(id=category_id).one()
     items = session.query(Item).filter_by(category_id=category_id).all()
+    if 'username' not in login_session:
+        return render_template('publiccategory.html', category=category, items=items)
+
     return render_template('category.html', category=category, items=items)
 
 @app.route('/category/<int:category_id>/JSON')
 def showCategoryJSON(category_id):
     items = session.query(Item).filter_by(category_id=category_id).all()
-    return jsonify([item.serialize for item in items])
+    return jsonify(Items=[item.serialize for item in items])
 
 @app.route('/category/<int:category_id>/item/new/', methods=['GET', 'POST'])
 def newItem(category_id):
@@ -224,6 +227,11 @@ def showItem(category_id, item_id):
     else:
         category = session.query(Category).filter_by(id=category_id).one()
         return render_template('item.html', category=category, item=item)
+
+@app.route('/category/<int:category_id>/item/<int:item_id>/JSON')
+def showItemJSON(category_id, item_id):
+    item = session.query(Item).filter_by(id=item_id).one()
+    return jsonify(Item=item.serialize)
 
 @app.route('/category/<int:category_id>/item/<int:item_id>/edit/', methods=['GET', 'POST'])
 def editItem(category_id, item_id):
