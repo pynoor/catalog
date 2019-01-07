@@ -9,6 +9,14 @@ body {
     padding-top: 70px;
     }
 </style>
+{% with messages = get_flashed_messages() %}
+{% if messges %}
+<ul>{% for message in messages %}
+        <li><strong> {{ message }}</strong></li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
 {% endblock %}
 
 {% block navbar %}
