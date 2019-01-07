@@ -44,7 +44,7 @@ class Item(Base):
         String(500), nullable=True
     )
 
-    category = Column(
+    category_id = Column(
         Integer, ForeignKey('category.id')
     )
 
