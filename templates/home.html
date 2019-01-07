@@ -1,0 +1,81 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}Home{% endblock %}
+
+
+{% block body %}
+{{ super () }}
+<style type="text/css" scoped>
+body {
+    padding-top: 70px;
+    }
+</style>
+{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{{ url_for('home') }}">Item Catalog</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            <button type="button" class="btn btn-default navbar-btn">Sign in</button>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="jumbotron">
+                    <h1>Categories</h1>
+                    <p>
+                        <div class="list-group">
+                                {% if categories %}
+                                <div class="list-group">
+                                    {% for category in categories %}
+                                        <a href="{{ url_for('showCategory', category_id=category.id) }}" class="list-group-item">
+                                            {{ category.name }}
+                                        </a>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                        </div>
+                    </p>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="jumbotron">
+                    <h1>Items</h1>
+                    <p>
+                        <div class="list-group">
+                                {% if items %}
+                                <div class="list-group">
+                                    {% for item in items[-7:] %}
+                                        <a href="{{ url_for('showItem', category_id=item.category_id, item_id=item.id)}}" class="list-group-item">
+                                            {{ item.name }}
+                                        </a>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                          </div>
+                    </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
