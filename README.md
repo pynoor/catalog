@@ -19,7 +19,7 @@ https://docs.python.org/3/
     See how to install Python3 here:
     https://docs.python-guide.org/starting/install3/osx/
 
-- Flask
+- Flask:
 This is a really cool and simple framework for developing
 web applications.
 Infos about Flask and how to install it can be found via:
@@ -27,27 +27,27 @@ http://flask.pocoo.org/
 
     Tip: Use pip3 instead of pip!
 
-- Flask Bootstrap
+- Flask: Bootstrap
 Flask-Bootstrap gives us a really easy way to access the
 bootstrap library. Here is the documentation for it:
 https://pythonhosted.org/Flask-Bootstrap/
 
-- SQLAlchemy
+- SQLAlchemy:
 This is the module we will be using to interact with our database and for it's ORM (Object-Relational-Mapping).
 More about SQLAlchemy here:
 https://docs.sqlalchemy.org/en/latest/intro.html
 
-- OAuth2Client
+- OAuth2Client:
 This will come in handy for our user login. It is a client library for OAuth2. Check it out via:
 https://oauth2client.readthedocs.io/en/latest/
 
     Tip: You might need to use --user at the end of your installation command.
 
-- Httplib2
+- Httplib2:
 This is a HTTP Client library for Python. For me it was installed along the OAuth2 Client but in case it's not for you, visit:
 https://github.com/httplib2/httplib2
 
-- Requests
+- Requests:
 Another HTTP library for Python - safe for human consumption, as specified on the website
 http://docs.python-requests.org/en/master/
 
