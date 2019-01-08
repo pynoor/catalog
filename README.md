@@ -57,16 +57,40 @@ http://docs.python-requests.org/en/master/
 
 In a few steps your application will be up and running, bear with me:
 
-1)
+1) Download this code and cd into the directory you downloaded it into.
 
-2)
+2) Install all the necessary modules to run the project. Check the Set-Up section of this README, if you haven't yet.
 
-3)
+2) Set up your database by passing the following commands to your command line:
 
-4)
+    $ python3 database_setup.py
 
-Tadaaa :)
+    $ python3 dbscript.py
+
+This will create a database called 'catalogwithusers.db' with tables 'user', 'category' and 'item'. The second command will create a few categories for you.
+
+    Attention: Do not edit or delete these categories manually if you already have items of that category.
+
+
+3) Now run the application by passing
+
+    $ python3 project.py
+
+    to your command line
+
+4) Visit http://localhost:8000/ in your browser :)
+
+5) Log in with a gmail account (This will create a first user in your database)
+
+6) Now we are ready to add some items to the database. Type
+
+    $ python3 additems.py
+
+    in your command line and refresh the homepage.
+
+7) Now play around with the webpage as you wish!
+
 
 Let me know if anything didn't work for you!
 
-Cheers
+Cheers :)
