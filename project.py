@@ -1,4 +1,4 @@
-# next steps: add flashed messages, login
+
 from flask import Flask, render_template, url_for, jsonify, request, redirect, flash
 from flask_bootstrap import Bootstrap
 app = Flask(__name__)
@@ -67,7 +67,7 @@ def getUserID(email):
     except:
         return None
 
-@app.route('/gconnect', methods=['POST'])
+@app.route('/gconnect', methods=['POST', 'GET'])
 def gconnect():
     # Validate state token
     if request.args.get('state') != login_session['state']:
@@ -153,7 +153,7 @@ def gconnect():
     flash("you are now logged in as %s" % login_session['username'])
     return output
 
-@app.route('/gdisconnect')
+@app.route('/gdisconnect', methods=['POST', 'GET'])
 def gdisconnect():
     access_token = login_session.get('access_token')
     if access_token is None:
@@ -221,12 +221,14 @@ def newItem(category_id):
 def showItem(category_id, item_id):
     item = session.query(Item).filter_by(id=item_id).one()
     creator = getUserInfo(item.user_id)
-    if 'username' not in login_session or creator.id != login_session['user_id']:
-        category = session.query(Category).filter_by(id=category_id).one()
-        return render_template('publicitem.html', category=category, item=item)
+    category = session.query(Category).filter_by(id=category_id).one()
+    logged_in = ('username' in login_session)
+    if not logged_in or creator.id != login_session['user_id']:
+        return render_template('publicitem.html', category=category, item=item, loggedIn=logged_in)
     else:
-        category = session.query(Category).filter_by(id=category_id).one()
         return render_template('item.html', category=category, item=item)
+
+
 
 @app.route('/category/<int:category_id>/item/<int:item_id>/JSON')
 def showItemJSON(category_id, item_id):
