@@ -39,6 +39,9 @@ body {
                     <li><a href="{{ url_for('home') }}">Home</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    {% if not loggedIn %}
+                    <a href="{{ url_for('showLogin')}}" class="btn btn-default">Log in</a>
+                    {% endif %}
                     <a href="{{ url_for('gdisconnect')}}" class="btn btn-default">Log out</a>
                 </ul>
         </div><!-- /.navbar-collapse -->
@@ -55,8 +58,6 @@ body {
                         {{ item.description }}
                     </p>
                     <p>
-                        <a href="{{ url_for('editItem', category_id=category.id, item_id=item.id)}}" class="btn btn-default">Edit</a>
-                        <a href="{{ url_for('deleteItem', category_id=category.id, item_id=item.id)}}" class="btn btn-default">Delete</a>
                     </p>
             </div>
         </div>
