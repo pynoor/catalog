@@ -336,7 +336,8 @@ def editItem(category_id, item_id):
                                    categories=categories)
     else:
         flash('You are not allowed to do that, sorry!')
-        redirect(url_for('showItem', category_id=category_id, item_id=item_id))
+        return redirect(url_for('showItem', category_id=category_id,
+                                item_id=item_id))
 
 # item page
 # depending on whether the creator of the item is logged in or not this
@@ -364,7 +365,8 @@ def deleteItem(category_id, item_id):
             return render_template('deleteitem.html', item=item)
     else:
         flash('You are not allowed to do that, sorry!')
-        redirect(url_for('showItem', category_id=category_id, item_id=item_id))
+        return redirect(url_for('showItem', category_id=category_id,
+                                item_id=item_id))
 
 
 if __name__ == '__main__':
