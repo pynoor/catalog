@@ -1,12 +1,19 @@
+# importing all necessary modules
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from database_setup import Category, Item, Base
 
+# connecting to the existing database
+
 engine = create_engine('sqlite:///catalogwithusers.db')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
+
+# in the following lines we are adding a few categories
+# as a first step to populate our database
 
 r_n_b = Category(name='rnb')
 session.add(r_n_b)
