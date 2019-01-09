@@ -1,6 +1,14 @@
 # importing all necessary modules for this project
-from flask import Flask, render_template
-from flask import url_for, jsonify, request, redirect, flash
+from flask import (
+    Flask,
+    render_template,
+    url_for,
+    jsonify,
+    request,
+    redirect,
+    flash
+)
+
 from flask_bootstrap import Bootstrap
 
 from sqlalchemy import create_engine
