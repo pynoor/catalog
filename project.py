@@ -351,8 +351,7 @@ def deleteItem(category_id, item_id):
             session.delete(item)
             session.commit()
             flash("Item deleted.")
-            return redirect(url_for('showItem', category_id=category_id,
-                            item_id=item_id))
+            return redirect(url_for('home'))
         else:
             return render_template('deleteitem.html', item=item)
     else:
